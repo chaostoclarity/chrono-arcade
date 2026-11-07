@@ -434,15 +434,19 @@ function binParts(i, s) {
   return [`${a}s`, a < 1000 ? "CE" : ""];
 }
 const binLabel = (i, s) => binParts(i, s).join(" ").trim();
-const SCALES = [{ s: 10, n: "decade", w: 4 }, { s: 100, n: "century", w: 4 }, { s: 1000, n: "millennium", w: 2 }];
+// Each scale only uses its own era: decades from 1900, centuries from 1000 to 1899, millennia before 1000.
+const SCALES = [{ s: 10, n: "decade", w: 1, from: 1900, to: NOW }, { s: 100, n: "century", w: 1, from: 1000, to: 1899 }, { s: 1000, n: "millennium", w: 1, from: -99999, to: 999 }];
 function makeDecadeRound(r) {
   const options = [];
   for (const sc of SCALES) {
-    const byBin = d3.group(EVENTS, e => binOf(e.y, sc.s));
+    const byBin = d3.group(EVENTS.filter(e => e.y >= sc.from && e.y <= sc.to), e => binOf(e.y, sc.s));
+    const wins = [];
     for (const k of [...byBin.keys()].sort((a, b) => a - b)) {
       const win = [0, 1, 2, 3, 4].map(i => k + i);
-      if (win.every(b => byBin.has(b)) && d3.sum(win, b => byBin.get(b).length) >= 10) for (let i = 0; i < sc.w; i++) options.push({ sc, win, byBin });
+      if (win.every(b => byBin.has(b)) && d3.sum(win, b => byBin.get(b).length) >= 10) wins.push({ sc, win, byBin });
     }
+    // weight each scale equally, however many windows it has
+    for (const w of wins) for (let i = 0; i < Math.round(60 / wins.length); i++) options.push(w);
   }
   const o = pick(options, r), chosen = o.win.map(b => pick(o.byBin.get(b), r));
   const rest = shuffle(o.win.flatMap(b => o.byBin.get(b)).filter(e => !chosen.includes(e)), r);
