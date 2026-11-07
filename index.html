@@ -1,0 +1,563 @@
+<meta charset="utf-8">
+<title>Chrono Arcade</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="History games about when and where things happened: Decade Drop, Where and When, and Closer Than You Think.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: time as rock strata. Each era is a colored layer; years sit in a mono "core sample" readout. Header, mode screen, sticky action bar on phones. */
+:root{
+  --bg:#eceeee; --panel:#ffffff; --ink:#15191d; --muted:#5b646b; --line:#d6dbdd; --line-strong:#b9c1c5;
+  --accent:#2c4a8f; --accent-ink:#ffffff; --accent-soft:#e1e7f4;
+  --ancient:#b9822f; --medieval:#7b5aa6; --early:#2c7a6b; --modern:#2c4a8f;
+  --ancient-soft:#f3e6cf; --medieval-soft:#e9e1f3; --early-soft:#d9ece7; --modern-soft:#dde4f3;
+  --good:#23824a; --good-soft:#d8efe0; --bad:#b8324f; --bad-soft:#f6dbe1;
+  --water:#cbdbe3; --land:#e3e2dc; --land-stroke:#ffffff; --grat:#b9cdd8;
+  --shadow:0 1px 2px rgba(20,25,30,.06),0 4px 14px rgba(20,25,30,.06);
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#101417; --panel:#182025; --ink:#e7ecee; --muted:#97a3aa; --line:#27323a; --line-strong:#3a4852;
+  --accent:#8fb0ff; --accent-ink:#0b1430; --accent-soft:#1d2a47;
+  --ancient:#e0aa55; --medieval:#b597e0; --early:#5cc0a9; --modern:#8fb0ff;
+  --ancient-soft:#3a2d17; --medieval-soft:#2d2440; --early-soft:#173530; --modern-soft:#1d2a47;
+  --good:#5fd08b; --good-soft:#173a26; --bad:#ff8aa3; --bad-soft:#40202a;
+  --water:#13303f; --land:#2a3439; --land-stroke:#101417; --grat:#1d4155;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 4px 14px rgba(0,0,0,.25); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#101417; --panel:#182025; --ink:#e7ecee; --muted:#97a3aa; --line:#27323a; --line-strong:#3a4852;
+  --accent:#8fb0ff; --accent-ink:#0b1430; --accent-soft:#1d2a47;
+  --ancient:#e0aa55; --medieval:#b597e0; --early:#5cc0a9; --modern:#8fb0ff;
+  --ancient-soft:#3a2d17; --medieval-soft:#2d2440; --early-soft:#173530; --modern-soft:#1d2a47;
+  --good:#5fd08b; --good-soft:#173a26; --bad:#ff8aa3; --bad-soft:#40202a;
+  --water:#13303f; --land:#2a3439; --land-stroke:#101417; --grat:#1d4155;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 4px 14px rgba(0,0,0,.25); color-scheme:dark}
+*{box-sizing:border-box}
+html,body{background:var(--bg)}
+body{color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.45}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.app{max-width:1100px;margin:0 auto;padding-block:14px 120px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:16px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;background:none;border:0;padding:0}
+.brand h1{font-family:var(--display);font-weight:800;font-size:clamp(24px,4vw,32px);margin:0;letter-spacing:-.01em;line-height:1}
+.strata-mark{width:30px;height:30px;border-radius:7px;overflow:hidden;display:grid;grid-template-rows:2fr 1.3fr 1fr .7fr;flex:none}
+.strata-mark i:nth-child(1){background:var(--ancient)}.strata-mark i:nth-child(2){background:var(--medieval)}.strata-mark i:nth-child(3){background:var(--early)}.strata-mark i:nth-child(4){background:var(--modern)}
+.seg{display:inline-flex;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:3px}
+.seg button{border:0;background:none;padding:6px 14px;border-radius:999px;font-weight:600;font-size:14px;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+h2{font-family:var(--display);font-weight:800;font-size:clamp(26px,4.4vw,38px);line-height:1.05;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h3{font-family:var(--display);font-weight:600;font-size:21px;margin:0;text-wrap:balance}
+.muted{color:var(--muted)}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.yr{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:700}
+/* Home */
+.hero{display:grid;gap:10px}
+.band{display:flex;height:14px;border-radius:4px;overflow:hidden;margin-top:4px}
+.band span{flex:1}
+.modes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.mode{display:grid;gap:10px;align-content:start;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow);transition:transform .15s,border-color .15s}
+.mode:hover{transform:translateY(-2px);border-color:var(--line-strong)}
+.mode p{margin:0;color:var(--muted)}
+.mode .meta{display:flex;justify-content:space-between;align-items:center;font-size:14px;gap:8px;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+.pill.done{background:var(--good-soft);color:var(--good)}
+.fact{background:var(--panel);border:1px solid var(--line);border-left:6px solid var(--early);border-radius:10px;padding:14px 16px;display:grid;gap:4px}
+.fact p{margin:0}
+/* Shared play UI */
+.playhead{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
+.playhead .rules{margin:6px 0 0;color:var(--muted);max-width:62ch}
+.score{font-family:var(--mono);font-weight:700;font-size:15px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:5px 12px;white-space:nowrap}
+.btn{border:0;border-radius:12px;padding:13px 20px;font-weight:700;background:var(--accent);color:var(--accent-ink);font-size:16px}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.ghost{background:var(--panel);color:var(--ink);border:1px solid var(--line-strong)}
+.actionbar{position:fixed;left:0;right:0;bottom:0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.actionbar .inner{max-width:1100px;margin:0 auto;display:grid;gap:8px}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.row .btn{flex:1}
+.cat{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+/* Decade Drop */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.card{text-align:left;background:var(--panel);border:2px solid var(--line);border-radius:12px;padding:12px 14px;display:grid;gap:4px;min-width:0;position:relative}
+.card[aria-pressed="true"]{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.card .t{font-weight:600}
+.card .slot{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--muted)}
+.card.placed .slot{color:var(--accent)}
+.card.ok{border-color:var(--good);background:var(--good-soft)}
+.card.no{border-color:var(--bad);background:var(--bad-soft)}
+.card .reveal{font-size:14px;display:grid;gap:3px}
+.bins{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.bin{border:2px solid transparent;border-radius:10px;padding:8px 4px;font-family:var(--mono);font-weight:700;font-size:13px;line-height:1.15;display:grid;gap:2px;justify-items:center;min-width:0}
+.bin small{font-family:var(--body);font-weight:600;font-size:11px;opacity:.8}
+.bin:disabled{cursor:default}
+/* Map */
+.mapwrap{position:relative;background:var(--water);border-radius:14px;overflow:hidden;border:1px solid var(--line);touch-action:none}
+.mapwrap svg{display:block;width:100%;height:auto;aspect-ratio:960/500;max-height:62vh}
+.sphere{fill:var(--water)} .grat{fill:none;stroke:var(--grat);stroke-width:.5;vector-effect:non-scaling-stroke}
+.land{fill:var(--land);stroke:var(--land-stroke);stroke-width:.6;vector-effect:non-scaling-stroke}
+.zoomctl{position:absolute;right:8px;top:8px;display:grid;gap:6px}
+.zoomctl button{width:38px;height:38px;border-radius:10px;border:1px solid var(--line-strong);background:var(--panel);font-weight:700;font-size:18px;line-height:1}
+.maptag{position:absolute;left:10px;bottom:8px;font-size:11px;color:var(--muted);background:color-mix(in srgb,var(--panel) 80%,transparent);padding:2px 6px;border-radius:6px}
+.prompt{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:grid;gap:4px}
+.prompt .t{font-family:var(--display);font-weight:600;font-size:clamp(20px,3vw,26px);line-height:1.15;text-wrap:balance}
+.yearctl{display:grid;gap:8px}
+.yearread{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.yearread input{width:150px;font-family:var(--mono);font-weight:700;font-size:22px;padding:6px 10px;border-radius:10px;border:1px solid var(--line-strong);background:var(--panel)}
+.yearread .era{font-size:13px;font-weight:700;padding:2px 8px;border-radius:999px}
+input[type=range]{width:100%;accent-color:var(--accent)}
+.nudges{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
+.nudges button{border:1px solid var(--line-strong);background:var(--panel);border-radius:8px;padding:7px 0;font-family:var(--mono);font-weight:700;font-size:13px}
+.result{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.result div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.result b{display:block;font-family:var(--mono);font-size:20px}
+/* Closer */
+.triad{display:grid;gap:12px}
+.anchor{background:var(--panel);border:2px solid var(--ink);border-radius:14px;padding:16px;display:grid;gap:4px}
+.anchor .t{font-family:var(--display);font-weight:600;font-size:clamp(20px,3vw,26px);line-height:1.15}
+.choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.choice{text-align:left;background:var(--panel);border:2px solid var(--line);border-radius:12px;padding:14px;display:grid;gap:4px;font-weight:600}
+.choice.ok{border-color:var(--good);background:var(--good-soft)}
+.choice.no{border-color:var(--bad);background:var(--bad-soft)}
+.choice:disabled{cursor:default;color:var(--ink)}
+.tl{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 12px 10px}
+.tl svg{width:100%;height:auto;display:block;overflow:visible}
+.tl text{font-family:var(--mono);font-size:11px;fill:var(--muted)}
+.tl .lbl{font-family:var(--body);font-size:12px;font-weight:600;fill:var(--ink)}
+.note{margin:0;color:var(--muted);font-size:15px}
+/* Summary */
+.summary{display:grid;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
+.big{font-family:var(--mono);font-weight:700;font-size:clamp(34px,7vw,52px);line-height:1}
+.grid-emoji{font-family:var(--mono);letter-spacing:2px;font-size:18px;overflow-wrap:anywhere;word-break:break-all}
+main{display:grid;gap:16px;min-width:0}
+.summary>*{min-width:0}
+.list{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.list li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 10px;align-items:baseline;border-top:1px solid var(--line);padding-top:8px}
+.list li p{grid-column:2;margin:0;font-size:14px;color:var(--muted)}
+.loading{padding:40px 0;color:var(--muted)}
+@media (max-width:560px){.bin{font-size:11px;padding:7px 2px}.bin small{font-size:10px}.yearread input{width:130px;font-size:20px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="app">
+  <header class="top">
+    <button class="brand" id="homeBtn" aria-label="Chrono Arcade home">
+      <span class="strata-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <h1>Chrono Arcade</h1>
+    </button>
+    <div class="seg" role="group" aria-label="Game type">
+      <button id="dailyBtn" aria-pressed="true">Daily</button>
+      <button id="practiceBtn" aria-pressed="false">Practice</button>
+    </div>
+  </header>
+  <main id="view"><p class="loading">Loading events…</p></main>
+</div>
+<div class="actionbar" id="bar" hidden><div class="inner" id="barInner"></div></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script>
+"use strict";
+const NOW = 2026;
+const $ = (s, r = document) => r.querySelector(s);
+const view = $("#view"), bar = $("#bar"), barInner = $("#barInner");
+let EVENTS = [], WORLD = null, mode = "daily";
+
+/* ---------- helpers ---------- */
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+function fmtYear(y, ca) {
+  const base = y < 0 ? `${-y} BCE` : y < 1000 ? `${y} CE` : `${y}`;
+  return (ca ? "c. " : "") + base;
+}
+function era(y) {
+  if (y < 500) return { k: "ancient", n: "Ancient" };
+  if (y < 1500) return { k: "medieval", n: "Medieval" };
+  if (y < 1800) return { k: "early", n: "Early modern" };
+  return { k: "modern", n: "Modern" };
+}
+const CAT = { invention: "Invention", everyday: "Everyday life", empire: "Empires", nation: "Nations", conflict: "Conflict", exploration: "Exploration", trade: "Trade routes", science: "Science", culture: "Culture", religion: "Religion" };
+function rngFrom(str) {
+  let h = 1779033703 ^ str.length;
+  for (let i = 0; i < str.length; i++) { h = Math.imul(h ^ str.charCodeAt(i), 3432918353); h = (h << 13) | (h >>> 19); }
+  let a = h >>> 0;
+  return () => { a |= 0; a = (a + 0x6d2b79f5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+}
+const shuffle = (arr, r) => { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const pick = (arr, r) => arr[Math.floor(r() * arr.length)];
+function today() { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`; }
+function seedFor(game) { return mode === "daily" ? `${today()}|${game}` : `${Date.now()}|${Math.random()}|${game}`; }
+
+/* ---------- local stats (per browser) ---------- */
+const STORE = "chrono-arcade-v1";
+function loadStats() { try { return JSON.parse(localStorage.getItem(STORE)) || {}; } catch { return {}; } }
+function saveStats(s) { try { localStorage.setItem(STORE, JSON.stringify(s)); } catch {} }
+function record(game, score, max, detail) {
+  const s = loadStats();
+  const g = s[game] || (s[game] = { played: 0, best: 0, daily: {} });
+  g.played++; g.best = Math.max(g.best, score);
+  if (mode === "daily") g.daily[today()] = { score, max, detail };
+  saveStats(s);
+}
+function dailyDone(game) { const g = loadStats()[game]; return g && g.daily && g.daily[today()]; }
+function streak() {
+  const s = loadStats(); let n = 0; const d = new Date();
+  for (;;) {
+    const k = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+    if (["decade", "where", "closer"].some(g => s[g] && s[g].daily && s[g].daily[k])) { n++; d.setDate(d.getDate() - 1); } else break;
+  }
+  return n;
+}
+
+/* ---------- action bar ---------- */
+const app = $(".app");
+new ResizeObserver(() => { app.style.paddingBottom = (bar.hidden ? 28 : bar.offsetHeight + 24) + "px"; }).observe(bar);
+function setBar(html) { if (!html) { bar.hidden = true; barInner.innerHTML = ""; } else { barInner.innerHTML = html; bar.hidden = false; } app.style.paddingBottom = (bar.hidden ? 28 : bar.offsetHeight + 24) + "px"; }
+
+/* ---------- routing ---------- */
+const GAMES = {
+  decade: { name: "Decade Drop", blurb: "Ten events, five time slots. Sort each event into the decade, century, or millennium it happened in.", max: 10, unit: "" },
+  where: { name: "Where and When", blurb: "Drop a pin where it happened, then dial in the year. Five events, up to 1,000 points each.", max: 5000, unit: " pts" },
+  closer: { name: "Closer Than You Think", blurb: "Which event is closer in time to the one on top? The obvious answer is often wrong.", max: 10, unit: "" },
+};
+function route() {
+  const h = location.hash.replace("#", "");
+  window.scrollTo(0, 0);
+  if (h === "decade") return playDecade();
+  if (h === "where") return playWhere();
+  if (h === "closer") return playCloser();
+  home();
+}
+window.addEventListener("hashchange", route);
+$("#homeBtn").onclick = () => { if (location.hash) location.hash = ""; else home(); };
+function setMode(m) {
+  mode = m; $("#dailyBtn").setAttribute("aria-pressed", m === "daily"); $("#practiceBtn").setAttribute("aria-pressed", m === "practice"); route();
+}
+$("#dailyBtn").onclick = () => setMode("daily");
+$("#practiceBtn").onclick = () => setMode("practice");
+
+/* ---------- home ---------- */
+function home() {
+  setBar(null);
+  const s = loadStats(), st = streak();
+  const f = pick(EVENTS.filter(e => e.f), Math.random);
+  const tiles = Object.entries(GAMES).map(([k, g]) => {
+    const d = dailyDone(k), best = s[k] ? s[k].best : 0;
+    const status = mode === "daily" ? (d ? `<span class="pill done">Today: ${d.score}${g.unit} of ${g.max.toLocaleString()}${g.unit}</span>` : `<span class="pill">Today's set ready</span>`) : `<span class="pill">Endless practice</span>`;
+    return `<button class="mode" data-go="${k}"><h3>${g.name}</h3><p>${g.blurb}</p><div class="meta">${status}<span class="muted">Best ${best.toLocaleString()}${g.unit}</span></div></button>`;
+  }).join("");
+  view.innerHTML = `
+    <section class="hero">
+      <p class="eyebrow">${mode === "daily" ? "Daily set for " + new Date().toLocaleDateString(undefined, { weekday: "long", month: "long", day: "numeric" }) : "Practice mode: fresh rounds every time"}</p>
+      <h2>When did it happen, and where?</h2>
+      <p class="muted" style="margin:0;max-width:62ch">${EVENTS.length} hand-picked events from Göbekli Tepe to South Sudan: inventions, empires, new countries, trade routes, and the odd fact that resets your sense of time.${st ? ` Daily streak: <b>${st} day${st > 1 ? "s" : ""}</b>.` : ""}</p>
+      <div class="band" aria-hidden="true"><span style="background:var(--ancient);flex:4"></span><span style="background:var(--medieval);flex:2"></span><span style="background:var(--early);flex:1.2"></span><span style="background:var(--modern);flex:1.6"></span></div>
+    </section>
+    <section class="modes">${tiles}</section>
+    <section class="fact">
+      <span class="eyebrow">Did you know · <span class="yr">${fmtYear(f.y, f.ca)}</span> · ${esc(f.p)}</span>
+      <p><b>${esc(f.t)}.</b> ${esc(f.f)}</p>
+    </section>`;
+  view.querySelectorAll("[data-go]").forEach(b => (b.onclick = () => (location.hash = b.dataset.go)));
+}
+
+/* ---------- summary ---------- */
+function summary(game, score, items, grid) {
+  const g = GAMES[game];
+  record(game, score, g.max, grid);
+  const share = `Chrono Arcade · ${g.name}${mode === "daily" ? " · " + today() : ""}\n${grid}\n${score.toLocaleString()}${g.unit} / ${g.max.toLocaleString()}${g.unit}`;
+  view.insertAdjacentHTML("beforeend", `
+    <section class="summary" id="summary">
+      <span class="eyebrow">${mode === "daily" ? "Today's result" : "Round result"}</span>
+      <div class="big">${score.toLocaleString()}<span class="muted" style="font-size:.45em"> / ${g.max.toLocaleString()}${g.unit}</span></div>
+      <div class="grid-emoji" aria-label="Result grid">${grid}</div>
+      <ul class="list">${items}</ul>
+    </section>`);
+  setBar(`<div class="row"><button class="btn ghost" id="shareBtn">Copy result</button><button class="btn" id="againBtn">${mode === "daily" ? "Practice this game" : "Play again"}</button></div><div class="row"><button class="btn ghost" id="backBtn">All games</button></div>`);
+  $("#shareBtn").onclick = async e => { try { await navigator.clipboard.writeText(share); e.target.textContent = "Copied"; } catch { e.target.textContent = "Copy failed"; } };
+  $("#againBtn").onclick = () => { if (mode === "daily") setMode("practice"); else route(); };
+  $("#backBtn").onclick = () => (location.hash = "");
+  $("#summary").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+function doneToday(game) {
+  const d = dailyDone(game), g = GAMES[game];
+  setBar(`<div class="row"><button class="btn" id="pr">Practice ${g.name}</button><button class="btn ghost" id="bk">All games</button></div>`);
+  $("#pr").onclick = () => setMode("practice"); $("#bk").onclick = () => (location.hash = "");
+  view.innerHTML = `<section class="summary"><span class="eyebrow">${g.name} · today</span><h2>Done for today</h2><div class="big">${d.score.toLocaleString()}<span class="muted" style="font-size:.45em"> / ${d.max.toLocaleString()}${g.unit}</span></div><div class="grid-emoji">${d.detail || ""}</div><p class="muted" style="margin:0">A new daily set arrives tomorrow. Practice mode has endless rounds.</p></section>`;
+}
+
+/* ---------- Decade Drop ---------- */
+function binOf(y, s) { return Math.floor(y / s); }
+function binParts(i, s) {
+  const a = i * s, b = a + s - 1;
+  if (s === 1000) return a >= 0 ? [`${Math.max(a, 1)}–${b}`, "CE"] : [`${-a}–${-b}`, "BCE"];
+  if (a < 0) return [s === 10 ? `${-b}s` : `${-a}–${-b}`, "BCE"];
+  return [`${a}s`, a < 1000 ? "CE" : ""];
+}
+function binLabel(i, s) {
+  const a = i * s, b = a + s - 1;
+  if (a >= 1000) return s === 1000 ? `${a}–${b}` : `${a}s`;
+  if (a >= 0) return s === 1000 ? `1–999` : `${a}s`;
+  if (s === 10) return `${-b}s BCE`;
+  return `${-a}–${-b} BCE`.replace(/^(\d+)–0 BCE$/, "$1–1 BCE");
+}
+const SCALES = [{ s: 10, n: "decade", w: 4 }, { s: 100, n: "century", w: 4 }, { s: 1000, n: "millennium", w: 2 }];
+function makeDecadeRound(r) {
+  const options = [];
+  for (const sc of SCALES) {
+    const byBin = d3.group(EVENTS, e => binOf(e.y, sc.s));
+    const keys = [...byBin.keys()].sort((a, b) => a - b);
+    for (const k of keys) {
+      const win = [0, 1, 2, 3, 4].map(i => k + i);
+      if (win.every(b => byBin.has(b)) && d3.sum(win, b => byBin.get(b).length) >= 10) for (let i = 0; i < sc.w; i++) options.push({ sc, win, byBin });
+    }
+  }
+  const o = pick(options, r);
+  const chosen = o.win.map(b => pick(o.byBin.get(b), r));
+  const rest = shuffle(o.win.flatMap(b => o.byBin.get(b)).filter(e => !chosen.includes(e)), r);
+  while (chosen.length < 10) chosen.push(rest.pop());
+  return { scale: o.sc, bins: o.win, events: shuffle(chosen, r) };
+}
+function playDecade() {
+  if (mode === "daily" && dailyDone("decade")) return doneToday("decade");
+  const r = rngFrom(seedFor("decade"));
+  const R = makeDecadeRound(r), s = R.scale.s;
+  const place = new Map(); let sel = null, checked = false;
+  const eraOfBin = b => era(b * s + s / 2).k;
+  function render() {
+    view.innerHTML = `
+      <section class="playhead"><div><span class="eyebrow">Decade Drop · ${mode}</span><h2>Sort by ${R.scale.n}</h2>
+      <p class="rules">Tap an event, then tap the ${R.scale.n} it belongs in. Every slot has at least one event. Check when all ten are placed.</p></div>
+      <span class="score">${place.size}/10 placed</span></section>
+      <section class="cards">${R.events.map((e, i) => {
+        const b = place.get(e.id), ok = checked && b === binOf(e.y, s);
+        const cls = checked ? (ok ? "ok" : "no") : b !== undefined ? "placed" : "";
+        return `<button class="card ${cls}" data-i="${i}" aria-pressed="${sel === i}" ${checked ? "disabled" : ""}>
+          <span class="cat">${CAT[e.c]}</span><span class="t">${esc(e.t)}</span>
+          <span class="slot">${b !== undefined ? "→ " + binLabel(b, s) : "Not placed"}</span>
+          ${checked ? `<span class="reveal"><span><span class="yr">${fmtYear(e.y, e.ca)}</span> · ${esc(e.p)}</span><span class="muted">${esc(e.f)}</span></span>` : ""}
+        </button>`;
+      }).join("")}</section>`;
+    view.querySelectorAll(".card").forEach(c => (c.onclick = () => { const i = +c.dataset.i; sel = sel === i ? null : i; render(); }));
+    if (checked) return;
+    setBar(`<div class="bins">${R.bins.map(b => {
+      const k = eraOfBin(b), n = [...place.values()].filter(v => v === b).length;
+      const [l1, l2] = binParts(b, s);
+      return `<button class="bin" data-b="${b}" aria-label="${binLabel(b, s)}" style="background:var(--${k}-soft);color:var(--${k});border-color:${sel !== null ? `var(--${k})` : "transparent"}" ${sel === null ? "disabled" : ""}><span>${l1}</span>${l2 ? `<span>${l2}</span>` : ""}<small>${n} placed</small></button>`;
+    }).join("")}</div><div class="row"><button class="btn" id="check" ${place.size < 10 ? "disabled" : ""}>Check answers</button></div>`);
+    barInner.querySelectorAll(".bin").forEach(b => (b.onclick = () => {
+      if (sel === null) return;
+      place.set(R.events[sel].id, +b.dataset.b);
+      const next = R.events.findIndex((e, i) => i > sel && !place.has(e.id));
+      const first = R.events.findIndex(e => !place.has(e.id));
+      sel = next >= 0 ? next : first >= 0 ? first : null; render();
+    }));
+    $("#check").onclick = () => {
+      checked = true; render();
+      const res = R.events.map(e => place.get(e.id) === binOf(e.y, s));
+      const score = res.filter(Boolean).length;
+      const sorted = R.events.slice().sort((a, b) => a.y - b.y);
+      summary("decade", score, sorted.map(e => `<li><span class="yr">${fmtYear(e.y, e.ca)}</span><span>${place.get(e.id) === binOf(e.y, s) ? "✓" : "✗"} ${esc(e.t)}</span></li>`).join(""), res.map(x => (x ? "🟩" : "🟥")).join(""));
+    };
+  }
+  sel = 0; render();
+}
+
+/* ---------- Where and When ---------- */
+const YMIN = -10000;
+const S_MAX = 1000, LN = Math.log(NOW - YMIN + 1);
+const yearFromS = v => { let y = Math.round(NOW - Math.expm1(((S_MAX - v) / S_MAX) * LN)); return y === 0 ? 1 : y; };
+const sFromYear = y => S_MAX - (Math.log1p(Math.max(0, NOW - y)) / LN) * S_MAX;
+function parseYear(str) {
+  const t = String(str).trim().toUpperCase().replace(/,/g, "");
+  const m = t.match(/^(-?\d+)\s*(BCE|BC|CE|AD)?$/);
+  if (!m) return null;
+  let y = parseInt(m[1], 10);
+  if (m[2] === "BCE" || m[2] === "BC") y = -Math.abs(y);
+  if (y === 0 || y < YMIN || y > NOW) return null;
+  return y;
+}
+function timePts(guess, truth) {
+  const tol = Math.max(8, (NOW - truth) * 0.12);
+  return Math.round(500 * Math.pow(0.5, Math.abs(guess - truth) / tol));
+}
+const distPts = km => Math.round(500 * Math.pow(0.5, km / 800));
+function makeWhereRound(r) {
+  const pool = shuffle(EVENTS, r), out = [], cats = new Set(), eras = {};
+  for (const e of pool) {
+    const ek = era(e.y).k;
+    if (cats.has(e.c) || (eras[ek] || 0) >= 2) continue;
+    if (out.some(o => d3.geoDistance([o.lo, o.la], [e.lo, e.la]) < 0.25)) continue;
+    out.push(e); cats.add(e.c); eras[ek] = (eras[ek] || 0) + 1;
+    if (out.length === 5) break;
+  }
+  return out;
+}
+function buildMap(container, onPick) {
+  const W = 960, H = 500;
+  const proj = d3.geoEqualEarth().fitExtent([[6, 6], [W - 6, H - 6]], { type: "Sphere" });
+  const path = d3.geoPath(proj);
+  const svg = d3.select(container).append("svg").attr("viewBox", `0 0 ${W} ${H}`).attr("role", "img").attr("aria-label", "World map. Tap to drop a pin.");
+  const g = svg.append("g");
+  g.append("path").datum({ type: "Sphere" }).attr("class", "sphere").attr("d", path);
+  g.append("path").datum(d3.geoGraticule10()).attr("class", "grat").attr("d", path);
+  g.append("g").selectAll("path").data(WORLD.features).join("path").attr("class", "land").attr("d", path);
+  const over = svg.append("g");
+  let t = d3.zoomIdentity, guess = null, truth = null, locked = false;
+  const zoom = d3.zoom().scaleExtent([1, 14]).translateExtent([[0, 0], [W, H]]).on("zoom", ev => { t = ev.transform; g.attr("transform", t); draw(); });
+  svg.call(zoom).on("dblclick.zoom", null);
+  svg.on("click", ev => {
+    if (locked) return;
+    const p = t.invert(d3.pointer(ev, svg.node())), ll = proj.invert(p);
+    if (!ll || !isFinite(ll[0]) || !d3.geoContains({ type: "Sphere" }, ll)) return;
+    const back = proj(ll); if (Math.hypot(back[0] - p[0], back[1] - p[1]) > 1) return;
+    guess = ll; draw(); onPick(ll);
+  });
+  function scr(ll) { return t.apply(proj(ll)); }
+  function draw() {
+    over.selectAll("*").remove();
+    if (guess && truth) {
+      const line = d3.geoInterpolate(guess, truth), pts = d3.range(0, 1.0001, 0.05).map(f => scr(line(f)));
+      over.append("path").attr("d", d3.line()(pts)).attr("fill", "none").attr("stroke", "var(--ink)").attr("stroke-width", 2).attr("stroke-dasharray", "5 4");
+    }
+    if (guess) { const [x, y] = scr(guess); over.append("circle").attr("cx", x).attr("cy", y).attr("r", 8).attr("fill", "var(--accent)").attr("stroke", "var(--panel)").attr("stroke-width", 2.5); }
+    if (truth) { const [x, y] = scr(truth); over.append("circle").attr("cx", x).attr("cy", y).attr("r", 9).attr("fill", "var(--good)").attr("stroke", "var(--panel)").attr("stroke-width", 2.5); }
+  }
+  return {
+    zoomBy: k => svg.transition().duration(250).call(zoom.scaleBy, k),
+    reset: () => svg.transition().duration(300).call(zoom.transform, d3.zoomIdentity),
+    reveal(tr) {
+      truth = tr; locked = true;
+      const pts = [guess, truth].filter(Boolean).map(ll => proj(ll));
+      const [x0, x1] = d3.extent(pts, p => p[0]), [y0, y1] = d3.extent(pts, p => p[1]);
+      const k = Math.max(1, Math.min(8, 0.6 / Math.max((x1 - x0) / W, (y1 - y0) / H, 0.02)));
+      const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
+      svg.transition().duration(600).call(zoom.transform, d3.zoomIdentity.translate(W / 2, H / 2).scale(k).translate(-cx, -cy));
+      draw();
+    },
+  };
+}
+function playWhere() {
+  if (mode === "daily" && dailyDone("where")) return doneToday("where");
+  const r = rngFrom(seedFor("where")), R = makeWhereRound(r);
+  let i = 0, total = 0; const log = [];
+  function round() {
+    const e = R[i]; let ll = null, year = 1500;
+    view.innerHTML = `
+      <section class="playhead"><div><span class="eyebrow">Where and When · ${i + 1} of 5 · ${mode}</span><h2>Place it on the map and in time</h2>
+      <p class="rules">Tap the map where it happened (pinch or use + to zoom), then set the year. Up to 500 points for the place and 500 for the year. Older events give more leeway on the year.</p></div>
+      <span class="score">${total.toLocaleString()} pts</span></section>
+      <section class="prompt"><span class="cat">${CAT[e.c]}</span><span class="t">${esc(e.t)}</span></section>
+      <section class="mapwrap" id="map"><div class="zoomctl"><button id="zin" aria-label="Zoom in">+</button><button id="zout" aria-label="Zoom out">−</button><button id="zre" aria-label="Reset zoom" style="font-size:13px">⤢</button></div><span class="maptag">Modern borders</span></section>
+      <section id="out"></section>`;
+    const map = buildMap($("#map"), p => { ll = p; upd(); });
+    $("#zin").onclick = e2 => { e2.stopPropagation(); map.zoomBy(1.8); };
+    $("#zout").onclick = e2 => { e2.stopPropagation(); map.zoomBy(1 / 1.8); };
+    $("#zre").onclick = e2 => { e2.stopPropagation(); map.reset(); };
+    setBar(`<div class="yearctl">
+        <div class="yearread"><label class="eyebrow" for="yin">Year</label><input id="yin" inputmode="text" value="1500" aria-describedby="yhelp"><span class="era" id="era"></span><span class="muted" id="yhelp" style="font-size:12px">Type 1450 or 300 BCE</span></div>
+        <input type="range" id="yr" min="0" max="${S_MAX}" step="1" aria-label="Year slider, oldest on the left">
+        <div class="nudges">${[-100, -10, -1, 1, 10, 100].map(n => `<button data-n="${n}">${n > 0 ? "+" : "−"}${Math.abs(n)}</button>`).join("")}</div>
+      </div><div class="row"><button class="btn" id="go" disabled>Drop a pin first</button></div>`);
+    const yin = $("#yin"), yr = $("#yr"), go = $("#go"), eraEl = $("#era");
+    function setYear(y, from) {
+      year = Math.max(YMIN, Math.min(NOW, y)); if (year === 0) year = 1;
+      if (from !== "text") yin.value = year < 0 ? `${-year} BCE` : `${year}`;
+      if (from !== "range") yr.value = sFromYear(year);
+      const er = era(year); eraEl.textContent = er.n; eraEl.style.background = `var(--${er.k}-soft)`; eraEl.style.color = `var(--${er.k})`;
+    }
+    function upd() { go.disabled = !ll; go.textContent = ll ? `Lock in ${fmtYear(year)}` : "Drop a pin first"; }
+    yr.oninput = () => { setYear(yearFromS(+yr.value), "range"); upd(); };
+    yin.oninput = () => { const y = parseYear(yin.value); if (y !== null) { setYear(y, "text"); upd(); } };
+    yin.onblur = () => setYear(year);
+    barInner.querySelectorAll("[data-n]").forEach(b => (b.onclick = () => { let y = year + +b.dataset.n; if (year > 0 && y <= 0) y -= 1; if (year < 0 && y >= 0) y += 1; setYear(y); upd(); }));
+    setYear(1500); upd();
+    go.onclick = () => {
+      const km = Math.round(d3.geoDistance(ll, [e.lo, e.la]) * 6371);
+      const dp = distPts(km), tp = timePts(year, e.y), off = Math.abs(year - e.y);
+      total += dp + tp; log.push({ e, km, off, pts: dp + tp, guess: year });
+      map.reveal([e.lo, e.la]);
+      $("#out").innerHTML = `<section class="prompt" style="margin-top:12px">
+        <span class="eyebrow"><span class="yr">${fmtYear(e.y, e.ca)}</span> · ${esc(e.p)}</span><p style="margin:0">${esc(e.f)}</p></section>
+        <div class="result" style="margin-top:10px"><div><span class="eyebrow">Place</span><b>${dp}</b><span class="muted">${km.toLocaleString()} km off</span></div><div><span class="eyebrow">Year</span><b>${tp}</b><span class="muted">${off === 0 ? "Exact" : off.toLocaleString() + " years off"} (you said ${fmtYear(year)})</span></div></div>`;
+      setBar(`<div class="row"><span class="score">${total.toLocaleString()} pts</span><button class="btn" id="nx">${i < 4 ? "Next event" : "See results"}</button></div>`);
+      $("#nx").onclick = () => {
+        if (++i < 5) return round();
+        view.innerHTML = `<section class="playhead"><div><span class="eyebrow">Where and When · ${mode}</span><h2>Results</h2></div></section>`;
+        summary("where", total,
+          log.map(l => `<li><span class="yr">${l.pts}</span><span>${esc(l.e.t)}</span><p>${fmtYear(l.e.y, l.e.ca)}, ${esc(l.e.p)}. You were ${l.km.toLocaleString()} km and ${l.off.toLocaleString()} years off.</p></li>`).join(""),
+          log.map(l => (l.pts >= 800 ? "🟩" : l.pts >= 500 ? "🟨" : l.pts >= 250 ? "🟧" : "🟥")).join(""));
+      };
+      $("#out").scrollIntoView({ behavior: "smooth", block: "nearest" });
+    };
+  }
+  round();
+}
+
+/* ---------- Closer Than You Think ---------- */
+function makeCloserRound(r) {
+  const used = new Set(), surprising = [], plain = [];
+  for (let tries = 0; tries < 6000 && (surprising.length < 7 || plain.length < 3); tries++) {
+    const [x, a, b] = [pick(EVENTS, r), pick(EVENTS, r), pick(EVENTS, r)];
+    if (new Set([x.id, a.id, b.id]).size < 3 || [x, a, b].some(e => used.has(e.id))) continue;
+    const da = Math.abs(a.y - x.y), db = Math.abs(b.y - x.y), near = da < db ? a : b, far = da < db ? b : a;
+    const dn = Math.min(da, db), df = Math.max(da, db);
+    if (dn < 15 || df / dn < 1.3 || df - dn < 15) continue;
+    const ex = era(x.y).k, isSurprise = era(far.y).k === ex && era(near.y).k !== ex;
+    const bucket = isSurprise ? surprising : plain, cap = isSurprise ? 7 : 3;
+    if (bucket.length >= cap) continue;
+    bucket.push({ x, a, b, near, far, dn, df }); [x, a, b].forEach(e => used.add(e.id));
+  }
+  return shuffle(surprising.concat(plain), r).slice(0, 10);
+}
+function tlSvg(q) {
+  const es = [q.x, q.a, q.b].sort((m, n) => m.y - n.y), W = 640, pad = 36;
+  const xs = d3.scaleLinear().domain(d3.extent(es, e => e.y)).range([pad, W - pad]);
+  const col = e => (e === q.x ? "var(--ink)" : e === q.near ? "var(--good)" : "var(--bad)");
+  const mid = (m, n) => (xs(m.y) + xs(n.y)) / 2;
+  return `<svg viewBox="0 0 ${W} 92" role="img" aria-label="Timeline of the three events to scale">
+    <line x1="${pad}" x2="${W - pad}" y1="46" y2="46" stroke="var(--line-strong)" stroke-width="3"/>
+    <line x1="${xs(q.x.y)}" x2="${xs(q.near.y)}" y1="46" y2="46" stroke="var(--good)" stroke-width="5"/>
+    <text x="${mid(q.x, q.near)}" y="34" text-anchor="middle">${q.dn.toLocaleString()} yrs</text>
+    <text x="${mid(q.x, q.far)}" y="66" text-anchor="middle">${q.df.toLocaleString()} yrs</text>
+    ${es.map((e, j) => `<circle cx="${xs(e.y)}" cy="46" r="8" fill="${col(e)}" stroke="var(--panel)" stroke-width="2.5"/><text x="${xs(e.y)}" y="${j % 2 ? 86 : 14}" text-anchor="${j === 0 ? "start" : j === 2 ? "end" : "middle"}" class="lbl">${fmtYear(e.y, e.ca)}</text>`).join("")}
+  </svg>`;
+}
+function playCloser() {
+  if (mode === "daily" && dailyDone("closer")) return doneToday("closer");
+  const r = rngFrom(seedFor("closer")), R = makeCloserRound(r);
+  let i = 0, score = 0; const res = [];
+  function round() {
+    const q = R[i];
+    view.innerHTML = `
+      <section class="playhead"><div><span class="eyebrow">Closer Than You Think · ${i + 1} of ${R.length} · ${mode}</span><h2>Which is closer in time?</h2>
+      <p class="rules">Pick the event that happened closer in time to the one in the dark box.</p></div><span class="score">${score}/${i}</span></section>
+      <section class="triad">
+        <div class="anchor"><span class="cat">${CAT[q.x.c]}</span><span class="t">${esc(q.x.t)}</span></div>
+        <div class="choices">${[q.a, q.b].map((e, j) => `<button class="choice" data-j="${j}"><span class="cat">${CAT[e.c]}</span>${esc(e.t)}</button>`).join("")}</div>
+        <div id="ans"></div>
+      </section>`;
+    setBar(null);
+    view.querySelectorAll(".choice").forEach(btn => (btn.onclick = () => {
+      const chosen = btn.dataset.j === "0" ? q.a : q.b, ok = chosen === q.near;
+      if (ok) score++; res.push(ok);
+      view.querySelectorAll(".choice").forEach(c => { const e = c.dataset.j === "0" ? q.a : q.b; c.disabled = true; c.classList.add(e === q.near ? "ok" : "no"); c.insertAdjacentHTML("beforeend", `<span class="yr" style="font-size:14px">${fmtYear(e.y, e.ca)}</span>`); });
+      view.querySelector(".anchor").insertAdjacentHTML("beforeend", `<span class="yr" style="font-size:14px">${fmtYear(q.x.y, q.x.ca)}</span>`);
+      const fe = q.near.f ? q.near : q.x;
+      $("#ans").innerHTML = `<div class="tl">${tlSvg(q)}</div><p class="note" style="margin-top:10px"><b>${ok ? "Right." : "Not quite."}</b> ${esc(q.near.t)} is ${q.dn.toLocaleString()} years away; ${esc(q.far.t)} is ${q.df.toLocaleString()}.</p><p class="note"><b>${esc(fe.t)}:</b> ${esc(fe.f)}</p>`;
+      setBar(`<div class="row"><span class="score">${score}/${i + 1}</span><button class="btn" id="nx">${i < R.length - 1 ? "Next" : "See results"}</button></div>`);
+      $("#nx").onclick = () => {
+        if (++i < R.length) return round();
+        view.innerHTML = `<section class="playhead"><div><span class="eyebrow">Closer Than You Think · ${mode}</span><h2>Results</h2></div></section>`;
+        summary("closer", score, R.map((qq, j) => `<li><span>${res[j] ? "✓" : "✗"}</span><span>${esc(qq.x.t)} → closer to ${esc(qq.near.t)}</span><p>${qq.dn.toLocaleString()} vs ${qq.df.toLocaleString()} years</p></li>`).join(""), res.map(x => (x ? "🟩" : "🟥")).join(""));
+      };
+    }));
+  }
+  round();
+}
+
+/* ---------- boot ---------- */
+Promise.all(["data/events.json", "data/world.json"].map(u => fetch(u).then(x => { if (!x.ok) throw new Error(u); return x.json(); })))
+  .then(([ev, w]) => { EVENTS = ev; WORLD = w; route(); })
+  .catch(err => { view.innerHTML = `<p class="loading">Could not load the game data (${esc(err.message)}). Reload the page to try again.</p>`; });
+</script>

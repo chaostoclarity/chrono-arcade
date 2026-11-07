@@ -1,0 +1,279 @@
+# year|title|place|lat|lng|category|fact   (~ before year = circa; negative = BCE)
+~-9500|Göbekli Tepe temple built|Şanlıurfa, Turkey|37.22|38.92|culture|Carved stone pillars raised 6,000 years before Stonehenge, before farming took hold.
+~-9000|Jericho first settled|Jericho, West Bank|31.87|35.44|empire|One of the oldest continuously inhabited towns on Earth.
+~-7500|Çatalhöyük town flourishes|Konya, Turkey|37.67|32.83|culture|Houses had no doors: people entered through holes in the roof.
+~-3500|Wheeled vehicles appear|Mesopotamia, Iraq|32.5|44.4|invention|Wheels were spun for making pottery before anyone put them on carts.
+~-3300|Ötzi the Iceman dies in the Alps|Ötztal Alps, Italy|46.78|10.84|science|He carried a copper axe and had 61 tattoos. Found by hikers in 1991.
+~-3200|Writing (cuneiform) appears in Sumer|Uruk, Iraq|31.32|45.64|invention|Many of the earliest written records are receipts and tax accounts.
+~-3100|Upper and Lower Egypt unified|Memphis, Egypt|29.85|31.25|empire|Egyptian civilization had run for 2,300 years before Rome was founded.
+~-2560|Great Pyramid of Giza completed|Giza, Egypt|29.98|31.13|culture|It was the tallest human-made structure on Earth for about 3,800 years.
+~-2500|Stonehenge's great sarsen stones raised|Wiltshire, England|51.18|-1.83|culture|Roughly contemporary with the Great Pyramid.
+~-2500|Mohenjo-daro thrives in the Indus Valley|Sindh, Pakistan|27.33|68.14|empire|It had covered drains and a grid street plan 4,500 years ago.
+~-2000|Last woolly mammoths die out|Wrangel Island, Russia|71.2|-179.5|science|Mammoths were still alive when the Great Pyramid was already 500 years old.
+~-1754|Code of Hammurabi carved|Babylon, Iraq|32.54|44.42|culture|One of the first written law codes, including rules on wages and faulty buildings.
+~-1600|Thera volcano erupts|Santorini, Greece|36.4|25.4|science|One of the largest eruptions in human history; it may have inspired the Atlantis myth.
+~-1600|Shang dynasty begins|Henan, China|36.1|114.35|empire|Shang priests left the oldest known Chinese writing on oracle bones.
+-1332|Tutankhamun becomes pharaoh|Thebes, Egypt|25.7|32.64|empire|He took the throne at about nine and died at about nineteen.
+-1046|Zhou dynasty overthrows the Shang|Shaanxi, China|34.3|108.9|empire|The Zhou lasted about 800 years, the longest dynasty in Chinese history.
+~-814|Carthage founded by Phoenicians|Tunis, Tunisia|36.85|10.32|trade|Founded as a trading colony, it later nearly destroyed Rome.
+-776|First recorded Olympic Games|Olympia, Greece|37.64|21.63|culture|The only event at the first games was a single sprint.
+-753|Rome founded (traditional date)|Rome, Italy|41.89|12.49|empire|By then the Great Pyramid was already about 1,800 years old.
+-551|Confucius born|Qufu, China|35.6|116.99|culture|He lived around the same time as the Buddha and Pythagoras.
+-539|Cyrus the Great takes Babylon|Babylon, Iraq|32.54|44.42|empire|The Persian Empire became the largest the world had yet seen.
+-508|Democracy begins in Athens|Athens, Greece|37.98|23.73|culture|Only adult male citizens could vote, perhaps a fifth of the population.
+-490|Battle of Marathon|Marathon, Greece|38.15|23.96|conflict|The modern marathon race is based on a legend about a runner from this battle.
+-447|Parthenon construction begins|Athens, Greece|37.97|23.73|culture|It was originally brightly painted, not plain white.
+-336|Alexander the Great becomes king|Pella, Greece|40.76|22.52|empire|He was 20. Within 13 years he ruled from Greece to India.
+-323|Alexander the Great dies|Babylon, Iraq|32.54|44.42|empire|He died at 32, and his empire split among his generals.
+~-300|Euclid writes the Elements|Alexandria, Egypt|31.2|29.92|science|It was used as a geometry textbook for over 2,000 years.
+-221|Qin unifies China|Xianyang, China|34.33|108.7|empire|The name China likely comes from Qin.
+-202|Han dynasty begins|Chang'an, China|34.27|108.9|empire|Most Chinese people today still call themselves Han.
+-138|Zhang Qian's mission opens the Silk Road|Chang'an, China|34.27|108.9|trade|He was captured by the Xiongnu and held for about ten years along the way.
+-44|Julius Caesar assassinated|Rome, Italy|41.89|12.48|conflict|Caesar was never actually emperor.
+-30|Cleopatra dies; Egypt becomes Roman|Alexandria, Egypt|31.2|29.92|empire|Cleopatra lived closer in time to the iPhone than to the building of the Great Pyramid.
+-27|Augustus becomes the first Roman emperor|Rome, Italy|41.89|12.49|empire|The month of August is named after him.
+~30|Crucifixion of Jesus|Jerusalem|31.78|35.23|religion|The calendar counting years from his birth was not devised until about 525.
+~40|Roman ships sail to India on the monsoon|Muziris, India|10.15|76.2|trade|Rome sent so much gold east for pepper that some Romans complained of the drain.
+~47|Romans found Londinium|London, England|51.51|-0.09|empire|London is younger than Rome by about 800 years.
+79|Vesuvius buries Pompeii|Pompeii, Italy|40.75|14.49|science|Ash preserved bread loaves still in the ovens.
+105|Cai Lun refines papermaking|Luoyang, China|34.62|112.45|invention|Paper took about 1,000 years to reach Europe.
+122|Hadrian's Wall begun|Northumberland, England|55.0|-2.3|conflict|It took about six years to build and ran 73 miles coast to coast.
+166|Roman envoys reach Han China|Luoyang, China|34.62|112.45|trade|The two largest empires on Earth barely knew each other existed.
+~200|Pyramid of the Sun built at Teotihuacan|Teotihuacan, Mexico|19.69|-98.84|culture|One of the largest cities on Earth at its peak, yet no one knows what its builders called it.
+~250|Classic Maya period begins|Tikal, Guatemala|17.22|-89.62|empire|The Maya had a written number zero centuries before Europe.
+301|San Marino founded (traditional date)|San Marino|43.94|12.45|nation|The world's oldest surviving republic.
+313|Edict of Milan legalizes Christianity|Milan, Italy|45.46|9.19|religion|Christianity went from persecuted to state religion in under 70 years.
+330|Constantinople becomes Rome's new capital|Istanbul, Turkey|41.01|28.98|empire|The eastern Roman Empire outlived the western one by nearly 1,000 years.
+410|Visigoths sack Rome|Rome, Italy|41.89|12.49|conflict|The first time in 800 years the city fell to a foreign enemy.
+476|Western Roman Empire falls|Ravenna, Italy|44.42|12.2|empire|The last western emperor, Romulus Augustulus, was a teenager pensioned off to a villa.
+537|Hagia Sophia completed|Istanbul, Turkey|41.01|28.98|religion|It was the world's largest cathedral for nearly 1,000 years.
+~552|Silkworm eggs smuggled to Byzantium|Istanbul, Turkey|41.01|28.98|trade|Monks reportedly hid them in hollow canes, ending China's silk monopoly.
+578|Kongō Gumi construction firm founded|Osaka, Japan|34.69|135.5|everyday|It ran independently for over 1,400 years until 2006, the oldest company on record.
+~570|Muhammad born|Mecca, Saudi Arabia|21.42|39.83|religion|Born about a century after the western Roman Empire fell.
+618|Tang dynasty begins|Chang'an, China|34.27|108.9|empire|Chang'an was likely the largest city in the world, with around a million people.
+622|The Hijra, year 1 of the Islamic calendar|Medina, Saudi Arabia|24.47|39.61|religion|The Islamic calendar is lunar, so its years are about 11 days shorter.
+711|Umayyad forces cross into Iberia|Gibraltar|36.14|-5.35|empire|Gibraltar's name comes from Jabal Tariq, the commander's mountain.
+732|Battle of Tours|Tours, France|47.39|0.69|conflict|Marked the northern limit of Umayyad expansion into Europe.
+762|Baghdad founded|Baghdad, Iraq|33.31|44.36|empire|Built as a perfect round city, it became a world center of science.
+793|Vikings raid Lindisfarne|Northumberland, England|55.68|-1.8|conflict|Usually counted as the start of the Viking Age.
+800|Charlemagne crowned emperor|Rome, Italy|41.9|12.45|empire|Charlemagne could read but reportedly struggled to learn to write.
+859|University of al-Qarawiyyin founded|Fez, Morocco|34.06|-4.97|culture|Founded by a woman, Fatima al-Fihri; it is still operating.
+868|Diamond Sutra printed|Dunhuang, China|40.14|94.66|invention|The oldest dated printed book, nearly 600 years before Gutenberg.
+~1000|Leif Erikson reaches North America|L'Anse aux Meadows, Canada|51.6|-55.53|exploration|Vikings reached the Americas almost 500 years before Columbus.
+1044|Gunpowder formula first written down|Kaifeng, China|34.8|114.3|invention|It was first discovered by alchemists looking for an elixir of life.
+~1050|Cahokia becomes a city|Collinsville, Illinois|38.66|-90.06|empire|Cahokia was larger than London at the time.
+1066|Battle of Hastings|Hastings, England|50.91|0.49|conflict|For 300 years after, English kings spoke French.
+1088|University of Bologna founded|Bologna, Italy|44.49|11.34|culture|The oldest university in the Western world still running.
+1095|Pope calls the First Crusade|Clermont, France|45.78|3.08|religion|Crusaders were promised forgiveness of sins for joining.
+~1096|Teaching begins at Oxford|Oxford, England|51.75|-1.25|culture|Oxford is older than the Aztec capital Tenochtitlan by over 200 years.
+1099|Crusaders capture Jerusalem|Jerusalem|31.78|35.23|conflict|The crusader kingdom lasted less than a century before Saladin retook the city.
+~1150|Angkor Wat completed|Siem Reap, Cambodia|13.41|103.87|religion|The largest religious monument in the world, built as a Hindu temple.
+1187|Saladin retakes Jerusalem|Jerusalem|31.78|35.23|conflict|His capture of the city triggered the Third Crusade with Richard the Lionheart.
+1204|Fourth Crusade sacks Constantinople|Istanbul, Turkey|41.01|28.98|conflict|Crusaders heading for Egypt attacked a Christian city instead.
+1206|Genghis Khan unites the Mongols|Mongolia|47.92|106.92|empire|The Mongol Empire became the largest contiguous land empire in history.
+1215|Magna Carta sealed|Runnymede, England|51.44|-0.56|culture|It was annulled by the Pope within ten weeks.
+1271|Marco Polo sets out for China|Venice, Italy|45.44|12.33|exploration|He was gone 24 years, and his book was dictated in a prison cell.
+1278|Andorra's co-princes agreement|Andorra la Vella, Andorra|42.51|1.52|nation|Andorra still has two heads of state: a Spanish bishop and the French president.
+~1286|Eyeglasses invented|Pisa, Italy|43.72|10.4|invention|Eyeglasses are about 300 years older than the telescope.
+1291|Swiss Confederation founded|Rütli, Switzerland|46.97|8.59|nation|Three valley cantons swore an oath of mutual defense against the Habsburgs.
+1291|Fall of Acre ends the crusader states|Acre, Israel|32.93|35.08|conflict|Two centuries of crusader rule in the Holy Land ended.
+1297|The Grimaldis seize Monaco|Monaco|43.73|7.42|nation|François Grimaldi got in disguised as a monk. His family still rules.
+1299|Ottoman Empire founded|Söğüt, Turkey|40.02|30.18|empire|It lasted over 600 years, until 1922.
+~1300|Great Zimbabwe at its height|Masvingo, Zimbabwe|-20.27|30.93|empire|The country of Zimbabwe is named after it.
+1324|Mansa Musa's pilgrimage to Mecca|Timbuktu, Mali|16.77|-3.0|trade|He spent so much gold in Cairo that its value crashed for years.
+1325|Ibn Battuta begins his travels|Tangier, Morocco|35.76|-5.83|exploration|He traveled about 75,000 miles over 30 years, far more than Marco Polo.
+1325|Tenochtitlan founded|Mexico City, Mexico|19.43|-99.13|empire|The Aztec capital is younger than Oxford University.
+1347|Black Death reaches Europe|Messina, Italy|38.19|15.55|science|It killed perhaps a third to half of Europe's population in five years.
+1368|Ming dynasty founded|Nanjing, China|32.06|118.8|empire|Its founder was born a poor peasant and once worked as a beggar monk.
+1389|Battle of Kosovo|Kosovo Polje, Kosovo|42.68|21.1|conflict|A defining event in Serbian identity, still invoked over 600 years later.
+1405|Zheng He's treasure fleet sets sail|Nanjing, China|32.06|118.8|exploration|His largest ships may have been several times longer than Columbus's.
+1420|Forbidden City completed|Beijing, China|39.92|116.39|empire|Built by roughly a million workers in about 14 years.
+1438|Pachacuti begins the Inca Empire's expansion|Cusco, Peru|-13.53|-71.97|empire|The Inca Empire lasted less than a century before the Spanish arrived.
+~1440|Gutenberg develops the printing press|Mainz, Germany|49.99|8.27|invention|Korea had printed books with metal type decades earlier.
+~1450|Machu Picchu built|Cusco Region, Peru|-13.16|-72.55|culture|It was occupied for less than 100 years.
+~1450|Coffee drinking begins in Yemen|Mocha, Yemen|13.32|43.25|trade|Sufi monks drank it to stay awake for night prayers.
+1453|Ottomans capture Constantinople|Istanbul, Turkey|41.01|28.98|conflict|This ended the Roman Empire, almost 1,500 years after Augustus.
+1488|Dias rounds the Cape of Good Hope|Cape of Good Hope, South Africa|-34.36|18.47|exploration|He named it the Cape of Storms; the king renamed it.
+1492|Columbus reaches the Americas|San Salvador, Bahamas|24.05|-74.5|exploration|He died believing he had reached Asia.
+1498|Vasco da Gama reaches India|Calicut, India|11.25|75.78|trade|The first sea route from Europe to the spice markets of Asia.
+1498|Bristle toothbrush invented|Beijing, China|39.92|116.39|everyday|Early bristles came from the necks of hogs.
+1503|Leonardo begins the Mona Lisa|Florence, Italy|43.77|11.26|culture|It only became world famous after it was stolen in 1911.
+1511|Portugal captures Malacca|Malacca, Malaysia|2.19|102.25|trade|Whoever held the Malacca Strait controlled the spice trade.
+1512|Portuguese reach the Spice Islands|Banda Islands, Indonesia|-4.53|129.9|trade|These tiny islands were the only source of nutmeg on Earth.
+1517|Luther posts the 95 Theses|Wittenberg, Germany|51.87|12.65|religion|The printing press spread his ideas across Germany within weeks.
+1519|Magellan's expedition departs|Sanlúcar de Barrameda, Spain|36.78|-6.35|exploration|About 270 men left; 18 came back. Magellan was not one of them.
+1521|Tenochtitlan falls to Cortés|Mexico City, Mexico|19.43|-99.13|conflict|Smallpox killed more Aztecs than Spanish weapons did.
+1522|First circumnavigation completed|Sanlúcar de Barrameda, Spain|36.78|-6.35|exploration|The survivors found they had lost a day on their calendar.
+1526|Mughal Empire founded|Panipat, India|29.39|76.97|empire|Its founder Babur was descended from both Genghis Khan and Timur.
+1533|Inca emperor Atahualpa executed|Cajamarca, Peru|-7.16|-78.51|conflict|He had paid a ransom of a room filled with gold.
+1543|Copernicus publishes a sun-centered universe|Nuremberg, Germany|49.45|11.08|science|He reportedly received a printed copy on his deathbed.
+1548|Tomatoes first recorded in Italy|Florence, Italy|43.77|11.26|everyday|Italian cooking had no tomatoes until the 1500s; they came from the Americas.
+1564|Shakespeare born|Stratford-upon-Avon, England|52.19|-1.71|culture|He invented or first recorded hundreds of English words.
+1565|St. Augustine founded|St. Augustine, Florida|29.9|-81.31|nation|The oldest European-founded city in the US, 42 years before Jamestown.
+1588|Spanish Armada defeated|English Channel|50.2|-1.5|conflict|Storms wrecked more Spanish ships than English cannons.
+1596|Flush toilet invented|Kelston, England|51.38|-2.43|everyday|Sir John Harington built one for Queen Elizabeth I. It didn't catch on for 200 years.
+1600|English East India Company chartered|London, England|51.51|-0.13|trade|It eventually ran a private army larger than Britain's.
+1602|Dutch East India Company founded|Amsterdam, Netherlands|52.37|4.9|trade|Often called the first publicly traded company.
+1603|Tokugawa shogunate begins|Edo (Tokyo), Japan|35.68|139.69|empire|Japan then mostly closed itself off from the world for over 200 years.
+1606|Dutch ship reaches Australia|Cape York, Australia|-12.6|141.8|exploration|The first recorded European landing, 164 years before Cook.
+1607|Jamestown founded|Jamestown, Virginia|37.21|-76.78|nation|The first permanent English settlement in America.
+1608|Telescope patent filed|Middelburg, Netherlands|51.5|3.61|invention|Galileo built his own version within a year after hearing about it.
+1610|Galileo sees Jupiter's moons|Padua, Italy|45.41|11.88|science|Proof that not everything orbits the Earth.
+1620|Mayflower lands at Plymouth|Plymouth, Massachusetts|41.96|-70.67|exploration|They were aiming for the Hudson River area and landed off course.
+1636|Harvard founded|Cambridge, Massachusetts|42.37|-71.12|culture|Harvard is older than calculus.
+1642|Tasman reaches New Zealand|Golden Bay, New Zealand|-40.8|172.6|exploration|Europeans didn't land there again for 127 years.
+1644|Qing dynasty takes Beijing|Beijing, China|39.92|116.39|empire|China's last dynasty, ruled by the Manchu.
+1648|Peace of Westphalia|Münster, Germany|51.96|7.63|nation|The origin of the modern idea of sovereign nation states.
+1653|Taj Mahal completed|Agra, India|27.17|78.04|culture|Built as a tomb for the emperor's wife, Mumtaz Mahal.
+1667|Treaty of Breda: Manhattan for nutmeg|Run Island, Indonesia|-4.55|129.67|trade|The Dutch let England keep Manhattan and kept a tiny nutmeg island instead.
+1687|Newton publishes the Principia|Cambridge, England|52.2|0.12|science|Halley paid to have it printed because the Royal Society had spent its budget on a book about fish.
+1703|St. Petersburg founded|St. Petersburg, Russia|59.93|30.36|empire|Peter the Great built it on a swamp as Russia's window to Europe.
+1707|Kingdom of Great Britain formed|London, England|51.5|-0.13|nation|Great Britain as a country is younger than Harvard.
+1712|Newcomen steam engine|Dudley, England|52.51|-2.08|invention|The first practical steam engine pumped water out of mines.
+1719|Liechtenstein becomes a principality|Vaduz, Liechtenstein|47.14|9.52|nation|Created so a noble family could get a seat in the Holy Roman Empire's council.
+1752|Franklin's kite experiment|Philadelphia, Pennsylvania|39.95|-75.17|science|It led to his invention of the lightning rod.
+1757|Battle of Plassey|Palashi, India|23.8|88.25|empire|A trading company, not a government, began British rule in India.
+1762|The sandwich is named|London, England|51.51|-0.13|everyday|Named after the Earl of Sandwich, who wanted to eat without leaving the card table.
+1769|Watt patents his improved steam engine|Glasgow, Scotland|55.86|-4.25|invention|The unit of power, the watt, is named after him.
+1770|Cook reaches Australia's east coast|Botany Bay, Australia|-34.0|151.18|exploration|He claimed the land for Britain without the consent of the people living there.
+1776|US Declaration of Independence|Philadelphia, Pennsylvania|39.95|-75.15|nation|Most delegates signed it on August 2, not July 4.
+1783|First crewed hot air balloon flight|Paris, France|48.86|2.35|invention|People flew balloons 120 years before airplanes.
+1788|First Fleet arrives in Sydney|Sydney, Australia|-33.86|151.21|nation|About 750 of the first settlers were convicts.
+1789|Storming of the Bastille|Paris, France|48.85|2.37|conflict|Only seven prisoners were inside.
+1796|Jenner tests the smallpox vaccine|Berkeley, England|51.69|-2.46|science|Vaccine comes from the Latin word for cow.
+1799|Rosetta Stone found|Rashid, Egypt|31.4|30.42|culture|French soldiers found it while rebuilding a fort.
+1803|Louisiana Purchase|New Orleans, Louisiana|29.95|-90.07|nation|It doubled the size of the US for about 3 cents an acre.
+1804|Haiti declares independence|Gonaïves, Haiti|19.45|-72.69|nation|The only nation founded by a successful slave revolt.
+1804|Lewis and Clark set out|St. Louis, Missouri|38.63|-90.2|exploration|Only one member of the expedition died, likely of appendicitis.
+1806|Holy Roman Empire dissolved|Vienna, Austria|48.21|16.37|empire|Voltaire joked it was neither holy, nor Roman, nor an empire.
+1810|Tin can patented|London, England|51.51|-0.13|everyday|For decades, cans were opened with a hammer and chisel.
+1810|Mexico's cry for independence|Dolores Hidalgo, Mexico|21.16|-100.93|nation|A priest rang his church bell to start the revolt.
+1815|Battle of Waterloo|Waterloo, Belgium|50.68|4.41|conflict|Waterloo is in Belgium, a country that did not exist yet.
+1822|Brazil declares independence|São Paulo, Brazil|-23.55|-46.63|nation|Its first emperor was the son of the king of Portugal.
+1825|First public steam railway opens|Stockton-on-Tees, England|54.53|-1.55|invention|Passengers rode in open coal wagons.
+1826|Oldest surviving photograph taken|Saint-Loup-de-Varennes, France|46.72|4.86|invention|The exposure took hours, maybe days.
+1826|Friction match invented|Stockton-on-Tees, England|54.57|-1.32|everyday|Its inventor, John Walker, refused to patent it.
+1828|Uruguay becomes independent|Montevideo, Uruguay|-34.9|-56.16|nation|Created as a buffer state between Brazil and Argentina, with British help.
+1830|Greece wins independence|Nafplio, Greece|37.57|22.8|nation|The birthplace of democracy is younger as a modern country than the US.
+1830|Belgium wins independence|Brussels, Belgium|50.85|4.35|nation|A revolt reportedly began after an opera performance in Brussels.
+1839|First Opium War begins|Guangzhou, China|23.13|113.26|conflict|Britain went to war to keep selling opium to China.
+1843|Fax machine patented|Edinburgh, Scotland|55.95|-3.19|invention|The fax machine is older than the telephone by 33 years.
+1844|First long-distance telegraph message|Washington, DC|38.89|-77.01|invention|The message was What hath God wrought.
+1848|California Gold Rush begins|Coloma, California|38.8|-120.89|trade|San Francisco grew from about 1,000 to 25,000 people in two years.
+1857|Packaged toilet paper goes on sale|New York City|40.71|-74.0|everyday|Toilet paper is younger than the telegraph.
+1858|Can opener patented|Waterbury, Connecticut|41.56|-73.04|everyday|The can opener came 48 years after the can.
+1859|Darwin publishes On the Origin of Species|London, England|51.51|-0.13|science|The first printing sold out on the first day.
+1859|First commercial oil well|Titusville, Pennsylvania|41.63|-79.67|trade|Oil was mostly wanted for lamp kerosene, not fuel.
+1861|Kingdom of Italy unified|Turin, Italy|45.07|7.69|nation|At unification, only a small share of Italians spoke standard Italian.
+1861|US Civil War begins|Charleston, South Carolina|32.75|-79.87|conflict|No one died in the opening bombardment of Fort Sumter.
+1863|London Underground opens|London, England|51.52|-0.12|invention|The first trains were steam locomotives running underground.
+1867|Canada becomes a country|Ottawa, Canada|45.42|-75.7|nation|Canada is younger than the London Underground.
+1867|US buys Alaska from Russia|Sitka, Alaska|57.05|-135.33|nation|About 2 cents an acre. Critics called it Seward's Folly.
+1867|Luxembourg declared neutral|Luxembourg City|49.61|6.13|nation|A crisis over who would own it nearly started a war between France and Prussia.
+1868|Meiji Restoration|Tokyo, Japan|35.68|139.69|empire|Japan went from samurai to a modern industrial power in about 40 years.
+1868|Typewriter patented|Milwaukee, Wisconsin|43.04|-87.91|invention|QWERTY layout came from this machine and is still on your phone.
+1869|Suez Canal opens|Ismailia, Egypt|30.6|32.32|trade|It cut the sea trip from London to India by about 4,500 miles.
+1869|Transcontinental railroad completed|Promontory, Utah|41.62|-112.55|invention|Coast-to-coast travel dropped from months to about a week.
+1869|Mendeleev's periodic table|St. Petersburg, Russia|59.93|30.36|science|He left gaps for elements no one had found yet, and they turned up.
+1871|German Empire proclaimed|Versailles, France|48.8|2.12|nation|Germany was declared a country inside a French palace.
+1876|Telephone patented|Boston, Massachusetts|42.36|-71.06|invention|Western Union reportedly turned down the chance to buy the patent.
+1877|Phonograph invented|Menlo Park, New Jersey|40.56|-74.34|invention|The first recording was Mary Had a Little Lamb.
+1878|Congress of Berlin redraws the Balkans|Berlin, Germany|52.52|13.4|nation|Serbia, Montenegro, and Romania won independence at a meeting of the great powers.
+1879|Edison's long-lasting light bulb|Menlo Park, New Jersey|40.56|-74.34|invention|His team tested thousands of materials, including bamboo.
+1884|Berlin Conference divides Africa|Berlin, Germany|52.52|13.4|empire|No Africans were invited.
+1885|Safety bicycle invented|Coventry, England|52.41|-1.51|invention|The modern bike came after the telephone.
+1886|First gasoline car|Mannheim, Germany|49.49|8.47|invention|Bertha Benz took the first long road trip to prove it worked.
+1886|Coca-Cola invented|Atlanta, Georgia|33.75|-84.39|everyday|First sold as a medicine at a pharmacy soda fountain.
+1886|Statue of Liberty dedicated|New York City|40.69|-74.04|culture|It was originally a shiny copper brown, not green.
+1889|Eiffel Tower opens|Paris, France|48.86|2.29|culture|It was meant to be temporary and many Parisian artists hated it.
+1889|Nintendo founded|Kyoto, Japan|35.01|135.77|everyday|It started by making playing cards, the same year the Eiffel Tower opened.
+1889|Pizza Margherita named|Naples, Italy|40.85|14.27|everyday|Named for Queen Margherita, in the colors of the Italian flag.
+1893|New Zealand women win the vote|Wellington, New Zealand|-41.29|174.78|culture|The first self-governing country to give all women the vote.
+1895|X-rays discovered|Würzburg, Germany|49.79|9.95|science|The first X-ray photo was of his wife's hand, wedding ring included.
+1895|First public film screening|Paris, France|48.87|2.33|invention|The Lumière brothers thought cinema had no future.
+1896|First modern Olympics|Athens, Greece|37.97|23.74|culture|The winners got silver medals; gold came later.
+1897|Aspirin developed|Wuppertal, Germany|51.26|7.15|science|Willow bark, its natural source, was used for pain for thousands of years.
+1898|US annexes Hawaii|Honolulu, Hawaii|21.31|-157.86|nation|Hawaii had been an independent kingdom just five years earlier.
+1901|Australia becomes a federation|Melbourne, Australia|-37.81|144.96|nation|Canberra was built as a compromise because Sydney and Melbourne both wanted to be capital.
+1901|First Nobel Prizes|Stockholm, Sweden|59.33|18.07|science|Alfred Nobel invented dynamite.
+1903|Panama separates from Colombia|Panama City, Panama|8.98|-79.52|nation|The US backed the split to get rights to build the canal.
+1903|Wright brothers' first flight|Kitty Hawk, North Carolina|36.02|-75.67|invention|The first flight covered 120 feet, less than the wingspan of a 747.
+1905|Einstein's special relativity|Bern, Switzerland|46.95|7.45|science|He was working as a patent clerk at the time.
+1905|Norway gains independence from Sweden|Oslo, Norway|59.91|10.75|nation|Norway voted in a Danish prince as its new king.
+1906|San Francisco earthquake|San Francisco, California|37.77|-122.42|science|Fires after the quake destroyed more of the city than the shaking.
+1908|Ford Model T launched|Detroit, Michigan|42.33|-83.05|invention|Ford said customers could have any color as long as it was black.
+1908|Bulgaria declares full independence|Veliko Tarnovo, Bulgaria|43.08|25.63|nation|Independence was declared in the old medieval capital.
+1911|Amundsen reaches the South Pole|South Pole, Antarctica|-89.9|0|exploration|He beat Scott by about five weeks, partly by using dogs.
+1912|Titanic sinks|North Atlantic Ocean|41.73|-49.95|everyday|Oreo cookies were introduced a few weeks earlier.
+1912|China's last emperor abdicates|Beijing, China|39.92|116.39|empire|Puyi was six. He later worked as a gardener in Beijing.
+1912|Albania declares independence|Vlorë, Albania|40.47|19.49|nation|Albania became a country seven months after the Titanic sank.
+1914|Archduke Franz Ferdinand assassinated|Sarajevo, Bosnia and Herzegovina|43.86|18.41|conflict|His driver took a wrong turn and stopped right in front of the assassin.
+1914|Panama Canal opens|Panama Canal, Panama|9.08|-79.68|trade|Ships traveling it go from the Atlantic to the Pacific heading southeast.
+1914|Modern bra patented|New York City|40.71|-74.0|everyday|Mary Phelps Jacob made the first from two handkerchiefs and ribbon.
+1917|Russian Revolution|St. Petersburg, Russia|59.93|30.36|conflict|Called the October Revolution though it happened in November by our calendar.
+1918|Yugoslavia formed|Belgrade, Serbia|44.79|20.45|nation|It began as the Kingdom of Serbs, Croats and Slovenes and lasted 73 years.
+1918|Czechoslovakia formed|Prague, Czech Republic|50.08|14.43|nation|Its independence was declared in Washington before Prague.
+1920|US women win the vote|Washington, DC|38.89|-77.01|culture|Tennessee ratified by one vote, cast by a 24-year-old after a note from his mother.
+1922|Tutankhamun's tomb found|Valley of the Kings, Egypt|25.74|32.6|culture|It was nearly untouched after 3,200 years.
+1922|Ottoman sultanate abolished|Istanbul, Turkey|41.01|28.98|empire|The empire had lasted 623 years.
+1922|Soviet Union formed|Moscow, Russia|55.76|37.62|nation|It lasted 69 years.
+1922|Irish Free State established|Dublin, Ireland|53.35|-6.26|nation|Ireland is younger than the London Underground by 59 years.
+1923|Republic of Turkey founded|Ankara, Turkey|39.93|32.86|nation|Ankara replaced Istanbul as capital, a city that had been an imperial capital for 1,600 years.
+1927|Electronic television demonstrated|San Francisco, California|37.77|-122.42|invention|Farnsworth sketched the idea as a teenager while plowing a field.
+1928|Sliced bread goes on sale|Chillicothe, Missouri|39.79|-93.55|everyday|Sliced bread is older than Vatican City.
+1928|Penicillin discovered|London, England|51.52|-0.17|science|Fleming found it in mold growing on a dish he forgot to clean.
+1929|Vatican City becomes a country|Vatican City|41.9|12.45|nation|The world's smallest country is younger than sliced bread.
+1932|Saudi Arabia founded|Riyadh, Saudi Arabia|24.71|46.68|nation|Oil was discovered there six years later.
+1938|Ballpoint pen patented|Budapest, Hungary|47.5|19.04|invention|In Argentina, ballpoints are still called biromes after the inventor.
+1939|World War II begins in Europe|Warsaw, Poland|52.23|21.01|conflict|It lasted about six years and killed over 70 million people.
+1944|Iceland becomes a republic|Reykjavík, Iceland|64.15|-21.94|nation|Iceland's parliament dates to 930, one of the oldest in the world.
+1945|Atomic bomb dropped on Hiroshima|Hiroshima, Japan|34.39|132.45|conflict|Hiroshima rebuilt and is home to over a million people today.
+1945|United Nations founded|San Francisco, California|37.78|-122.42|nation|It had 51 founding members. Today there are 193.
+1945|Microwave oven patented|Waltham, Massachusetts|42.38|-71.24|everyday|Discovered when radar work melted a candy bar in an engineer's pocket.
+1946|ENIAC computer unveiled|Philadelphia, Pennsylvania|39.95|-75.19|invention|It weighed about 30 tons; your phone is millions of times more powerful.
+1947|India and Pakistan gain independence|New Delhi, India|28.61|77.21|nation|Partition displaced around 15 million people.
+1947|Transistor invented|Murray Hill, New Jersey|40.68|-74.4|invention|Every chip in every device descends from this.
+1950|First credit card (Diners Club)|New York City|40.71|-74.0|everyday|Invented after a businessman forgot his wallet at dinner.
+1953|Structure of DNA described|Cambridge, England|52.2|0.12|science|Crick announced it in a pub, The Eagle.
+1953|First ascent of Everest|Mount Everest, Nepal|27.99|86.93|exploration|Hillary and Tenzing stayed on the summit about 15 minutes.
+1955|Velcro patented|Lausanne, Switzerland|46.52|6.63|everyday|Inspired by burrs stuck to the inventor's dog after a walk.
+1957|Sputnik launched|Baikonur, Kazakhstan|45.96|63.31|science|It beeped for three weeks until its batteries died.
+1958|LEGO brick patented|Billund, Denmark|55.73|9.11|everyday|Bricks from 1958 still click with ones made today.
+1958|Instant noodles invented|Ikeda, Japan|34.82|135.43|everyday|Invented by Momofuku Ando in his backyard shed.
+1960|Nigeria gains independence|Lagos, Nigeria|6.52|3.38|nation|One of 17 African countries to become independent that year.
+1960|Trieste dives to the bottom of the Mariana Trench|Mariana Trench, Pacific Ocean|11.35|142.2|exploration|People reached the deepest ocean point before they reached the Moon.
+1961|Berlin Wall built|Berlin, Germany|52.52|13.4|conflict|It went up almost overnight, on August 13.
+1961|Gagarin becomes the first human in space|Baikonur, Kazakhstan|45.96|63.31|exploration|His flight lasted 108 minutes.
+1964|Malta gains independence|Valletta, Malta|35.9|14.51|nation|The whole island was awarded the George Cross for its WWII resistance.
+1964|Shinkansen bullet train opens|Tokyo, Japan|35.68|139.77|invention|It has carried billions of passengers with no passenger deaths from crashes.
+1965|Singapore becomes independent|Singapore|1.35|103.82|nation|It didn't seek independence; Malaysia expelled it.
+1969|Apollo 11 launches to the Moon|Cape Canaveral, Florida|28.57|-80.65|exploration|The guidance computer had less memory than a modern calculator.
+1969|First ARPANET message sent|Los Angeles, California|34.07|-118.44|invention|The system crashed after the first two letters, LO.
+1971|Bangladesh gains independence|Dhaka, Bangladesh|23.81|90.41|nation|It had been East Pakistan, about 1,000 miles from West Pakistan.
+1971|United Arab Emirates formed|Abu Dhabi, UAE|24.45|54.38|nation|Dubai was a small fishing and pearling town a generation earlier.
+1971|First email sent|Cambridge, Massachusetts|42.37|-71.1|invention|Ray Tomlinson picked the @ sign because it wasn't used in names.
+1973|First mobile phone call|New York City|40.76|-73.98|invention|The inventor called his rival at another company.
+1974|First barcode scanned|Troy, Ohio|40.04|-84.2|everyday|The first item was a pack of Wrigley's gum.
+1976|Apple founded|Los Altos, California|37.38|-122.11|invention|A third co-founder sold his 10% stake for $800.
+1977|France's last execution by guillotine|Marseille, France|43.3|5.37|culture|The guillotine was still in use the year Star Wars came out.
+1979|Iranian Revolution|Tehran, Iran|35.69|51.39|conflict|Ended a monarchy with roots going back 2,500 years.
+1980|Post-it Notes launched|St. Paul, Minnesota|44.95|-93.09|everyday|The glue came from a failed attempt at a super-strong adhesive.
+1986|Chernobyl disaster|Pripyat, Ukraine|51.39|30.1|science|The exclusion zone has become an accidental wildlife refuge.
+1989|Berlin Wall falls|Berlin, Germany|52.52|13.4|nation|It fell partly due to a botched answer at a press conference.
+1989|World Wide Web proposed|Geneva, Switzerland|46.23|6.05|invention|His boss wrote vague but exciting on the proposal.
+1990|Germany reunifies|Berlin, Germany|52.52|13.4|nation|East and West Germany had been separate countries for 41 years.
+1991|Soviet Union dissolves|Moscow, Russia|55.76|37.62|nation|Fifteen countries emerged from it overnight.
+1991|Slovenia and Croatia leave Yugoslavia|Ljubljana, Slovenia|46.06|14.51|nation|The start of the breakup that turned one country into seven.
+1993|Czechoslovakia splits peacefully|Bratislava, Slovakia|48.15|17.11|nation|Called the Velvet Divorce.
+1993|Eritrea gains independence|Asmara, Eritrea|15.32|38.93|nation|Its independence left Ethiopia landlocked.
+1994|Channel Tunnel opens|Folkestone, England|51.1|1.15|invention|Napoleon's engineers proposed a tunnel in 1802.
+1994|South Africa's first all-race election|Pretoria, South Africa|-25.75|28.19|nation|Nelson Mandela voted for the first time at 75.
+1997|Hong Kong returns to China|Hong Kong|22.32|114.17|nation|Britain had held it for 156 years.
+1998|Google founded|Menlo Park, California|37.45|-122.18|invention|It started in a garage rented from a future YouTube CEO.
+2002|Euro notes and coins enter circulation|Frankfurt, Germany|50.11|8.68|trade|The euro existed for three years before you could hold one.
+2002|East Timor gains independence|Dili, Timor-Leste|-8.56|125.57|nation|The first new country of the 21st century.
+2004|Facebook founded|Cambridge, Massachusetts|42.37|-71.12|invention|It was originally only for Harvard students.
+2006|Montenegro becomes independent|Podgorica, Montenegro|42.44|19.26|nation|It won its referendum by a margin of less than half a percent over the required 55%.
+2007|iPhone announced|San Francisco, California|37.78|-122.4|invention|Cleopatra lived closer to this than to the Great Pyramid's construction.
+2008|Kosovo declares independence|Pristina, Kosovo|42.66|21.17|nation|Still not recognized by about half the world's countries.
+2011|South Sudan becomes independent|Juba, South Sudan|4.86|31.57|nation|The world's newest widely recognized country.
