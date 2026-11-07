@@ -74,6 +74,8 @@ button{cursor:pointer;touch-action:manipulation}
 .progress i.on{background:var(--accent)} .progress i.ok{background:var(--good)} .progress i.no{background:var(--bad)}
 .content{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:12px max(16px,var(--sr)) 20px max(16px,var(--sl));display:flex;flex-direction:column;gap:14px}
 .content.fill{overflow:hidden;padding:0;gap:0}
+.content > *{flex-shrink:0}
+.content.fill > *{flex-shrink:1}
 .dock{flex:none;grid-template-columns:minmax(0,1fr);background:var(--bar);-webkit-backdrop-filter:saturate(1.6) blur(14px);backdrop-filter:saturate(1.6) blur(14px);border-top:1px solid var(--line);padding:10px max(16px,var(--sr)) calc(10px + var(--sb)) max(16px,var(--sl));display:grid;gap:10px;z-index:3}
 .dock.has-tabs{padding-bottom:10px}
 .tabs{flex:none;display:grid;grid-template-columns:1fr 1fr;background:var(--bar);-webkit-backdrop-filter:saturate(1.6) blur(14px);backdrop-filter:saturate(1.6) blur(14px);border-top:1px solid var(--line);padding:6px max(16px,var(--sr)) calc(4px + var(--sb)) max(16px,var(--sl));z-index:3}
