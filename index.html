@@ -137,18 +137,24 @@ button{cursor:pointer;touch-action:manipulation}
 .hint{font-size:14px;color:var(--muted);margin:0}
 
 /* Decade Drop */
-.erow{width:100%;text-align:left;border:0;background:var(--panel);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;align-items:center;padding:11px 14px;min-height:58px}
-.erow + .erow{border-top:1px solid var(--line)}
-.erow .t{font-weight:600;font-size:16px;line-height:1.25}
-.erow .tag{font-family:var(--mono);font-size:12px;font-weight:700;padding:4px 8px;border-radius:8px;background:var(--panel-2);color:var(--muted);white-space:nowrap}
-.erow.sel{background:var(--accent-soft)} .erow.sel .tag{background:var(--accent);color:var(--accent-ink)}
-.erow.ok{background:var(--good-soft)} .erow.no{background:var(--bad-soft)}
-.erow .reveal{grid-column:1/-1;font-size:14px;color:var(--muted)}
-.erow .reveal b{color:var(--ink)}
-.bins{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
-.bin{border:0;border-radius:12px;min-height:62px;padding:6px 2px;display:grid;align-content:center;justify-items:center;gap:1px;font-family:var(--mono);font-weight:700;font-size:12.5px;line-height:1.15}
-.bin small{font-family:var(--body);font-size:10.5px;font-weight:700;opacity:.75;margin-top:2px}
-.bin:disabled{opacity:.55}
+.deck{background:var(--ink);color:var(--bg);border-radius:18px;padding:16px 18px;display:grid;gap:6px;box-shadow:0 8px 24px rgba(0,0,0,.16)}
+.deck .cat{color:inherit;opacity:.7}
+.deck .t{font-family:var(--display);font-weight:600;font-size:23px;line-height:1.15;text-wrap:balance}
+.deck .ask{font-size:14px;opacity:.8}
+.deck.fresh{animation:dealin .3s cubic-bezier(.2,.8,.2,1)}
+@keyframes dealin{from{transform:translateY(-10px) scale(.97);opacity:.3}to{transform:none;opacity:1}}
+.deck.idle{background:var(--panel);color:var(--ink);box-shadow:none}
+.bins{display:grid;gap:8px}
+.binrow{width:100%;text-align:left;border:2px solid transparent;border-radius:14px;padding:12px 14px 12px 12px;display:grid;grid-template-columns:8px minmax(0,1fr) auto;gap:4px 12px;align-items:center;min-height:58px;background:var(--panel)}
+.binrow .stripe{grid-row:1/span 2;align-self:stretch;border-radius:4px}
+.binrow .lbl{font-family:var(--mono);font-weight:700;font-size:17px}
+.binrow .drop{font-size:13px;font-weight:700;color:var(--accent);white-space:nowrap}
+.binrow .chips{grid-column:2/-1;display:flex;flex-wrap:wrap;gap:6px}
+.binrow .chips:empty{display:none}
+.binrow.target{border-color:var(--accent)}
+.binrow{cursor:pointer}.binrow[aria-disabled="true"]{cursor:default}.binrow[aria-disabled="true"]:active{transform:none}
+.pchip{border:0;font:inherit;font-size:13px;font-weight:600;line-height:1.2;text-align:left;padding:6px 10px;border-radius:10px;background:var(--panel-2);color:var(--ink);max-width:100%}
+.pchip.ok{background:var(--good-soft);color:var(--good)} .pchip.no{background:var(--bad-soft);color:var(--bad)}
 
 /* Map */
 .mapwrap{position:relative;flex:1;min-height:0;background:var(--water);touch-action:none;overflow:hidden}
@@ -193,6 +199,7 @@ input[type=range]{width:100%;accent-color:var(--accent);margin:2px 0;height:28px
 /* Sheet */
 .scrim{position:absolute;inset:0;background:var(--scrim);opacity:0;transition:opacity .25s;z-index:8}
 .scrim.on{opacity:1}
+.scrim:not(.on){pointer-events:none}
 .sheet{position:absolute;left:0;right:0;bottom:0;max-height:88%;display:flex;flex-direction:column;background:var(--bg);border-radius:20px 20px 0 0;transform:translateY(100%);transition:transform .32s cubic-bezier(.2,.8,.2,1);z-index:9;box-shadow:0 -10px 40px rgba(0,0,0,.2)}
 .sheet.on{transform:none}
 .grab{width:38px;height:5px;border-radius:3px;background:var(--line-strong);margin:8px auto 2px;flex:none}
@@ -326,7 +333,7 @@ $("#scrim").onclick = closeSheet;
 /* ---------- routing ---------- */
 const GAMES = {
   decade: { name: "Decade Drop", short: "Sort ten events into the right decade, century, or millennium.", max: 10, unit: "", k: "ancient",
-    rules: ["Each round has ten events and five time slots.", "Tap an event, then tap the slot it belongs in. The next event is picked for you.", "Tap a placed event again to move it.", "Every slot has at least one event. Check when all ten are placed."] },
+    rules: ["You get ten event cards, one at a time, and five time slots listed oldest to newest.", "Tap the slot the event on the card happened in. The next card comes up.", "When all ten are placed, you can tap any placed card to pick it up and move it.", "Every slot gets at least one event. When all ten are placed, check your answers."] },
   where: { name: "Where and When", short: "Drop a pin where it happened, then dial in the year.", max: 5000, unit: " pts", k: "early",
     rules: ["Five events per round.", "Tap the map where it happened. Pinch or use + and − to zoom, drag to pan.", "Set the year with the slider, the nudge buttons, or by typing (1450 or 300 BCE).", "Up to 500 points for the place and 500 for the year. Older events give more leeway on the year."] },
   closer: { name: "Closer Than You Think", short: "Which event is closer in time? The obvious answer is often wrong.", max: 10, unit: "", k: "medieval",
@@ -445,38 +452,53 @@ function makeDecadeRound(r) {
 function playDecade() {
   if (!startGame("decade")) return;
   const r = rngFrom(seedFor("decade")), R = makeDecadeRound(r), s = R.scale.s;
-  const place = new Map(); let sel = 0, checked = false;
+  const place = new Map(); let cur = 0, checked = false, dealt = true;
   const eraOfBin = b => era(b * s + s / 2).k;
+  const nextUnplaced = () => R.events.findIndex(e => !place.has(e.id));
   function render() {
-    setProgress(R.events.map((e, i) => checked ? (place.get(e.id) === binOf(e.y, s) ? "ok" : "no") : place.has(e.id) ? "on" : ""));
-    content.innerHTML = `<div class="prompt"><span class="eyebrow">${mode === "daily" ? "Daily" : "Practice"} · ${place.size} of 10 placed</span><span class="t">Sort by ${R.scale.n}</span><p class="hint">${checked ? "Here's how you did." : "Tap an event, then a slot below."}</p></div>
-      <div class="group">${R.events.map((e, i) => {
-        const b = place.get(e.id), ok = checked && b === binOf(e.y, s);
-        const cls = checked ? (ok ? "ok" : "no") : sel === i ? "sel" : "";
-        return `<button class="erow press" data-i="${i}" ${checked ? "disabled" : ""}><span><span class="cat">${CAT[e.c]}</span><br><span class="t">${esc(e.t)}</span></span>
-          <span class="tag">${b !== undefined ? binLabel(b, s) : "—"}</span>
-          ${checked ? `<span class="reveal"><b class="yr">${fmtYear(e.y, e.ca)}</b> · ${esc(e.p)}. ${esc(e.f)}</span>` : ""}</button>`;
-      }).join("")}</div>`;
-    content.querySelectorAll(".erow").forEach(c => (c.onclick = () => { buzz(); const i = +c.dataset.i; sel = sel === i ? null : i; render(); }));
-    if (checked) return;
-    setDock(`<div class="bins">${R.bins.map(b => {
-      const k = eraOfBin(b), n = [...place.values()].filter(v => v === b).length, [l1, l2] = binParts(b, s);
-      return `<button class="bin press" data-b="${b}" aria-label="${binLabel(b, s)}" style="background:var(--${k}-soft);color:var(--${k})" ${sel === null ? "disabled" : ""}><span>${l1}</span>${l2 ? `<span>${l2}</span>` : ""}<small>${n ? n + " in" : "empty"}</small></button>`;
-    }).join("")}</div><button class="btn press" id="check" ${place.size < 10 ? "disabled" : ""}>${place.size < 10 ? `Place ${10 - place.size} more` : "Check answers"}</button>`);
-    dock.querySelectorAll(".bin").forEach(b => (b.onclick = () => {
-      if (sel === null) return; buzz();
-      place.set(R.events[sel].id, +b.dataset.b);
-      const next = R.events.findIndex((e, i) => i > sel && !place.has(e.id)), first = R.events.findIndex(e => !place.has(e.id));
-      sel = next >= 0 ? next : first >= 0 ? first : null; render();
-      const el = content.querySelector(".erow.sel"); if (el) el.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    setProgress(R.events.map(e => checked ? (place.get(e.id) === binOf(e.y, s) ? "ok" : "no") : place.has(e.id) ? "on" : ""));
+    const e = cur !== null ? R.events[cur] : null;
+    const card = checked
+      ? `<div class="deck idle"><span class="eyebrow">Results</span><span class="t">${[...place].filter(([id, b]) => binOf(R.events.find(x => x.id === id).y, s) === b).length} of 10 in the right ${R.scale.n}</span><span class="sub">Each card shows its real year. Red means wrong slot.</span></div>`
+      : e
+      ? `<div class="deck${dealt ? " fresh" : ""}"><span class="cat">Card ${place.size + (place.has(e.id) ? 0 : 1)} of 10 · ${CAT[e.c]}</span><span class="t">${esc(e.t)}</span><span class="ask">Tap the ${R.scale.n} it happened in.</span></div>`
+      : `<div class="deck idle"><span class="eyebrow">All 10 placed</span><span class="t">Ready to check?</span><span class="sub">Tap any card below to pick it back up, or check your answers.</span></div>`;
+    content.innerHTML = `${card}<div class="bins">${R.bins.map(b => {
+      const k = eraOfBin(b), here = R.events.filter(x => place.get(x.id) === b);
+      const chips = here.map(x => {
+        const ok = binOf(x.y, s) === b;
+        return checked ? `<span class="pchip ${ok ? "ok" : "no"}">${ok ? "✓" : "✗"} ${esc(x.t)} <span class="yr">${fmtYear(x.y, x.ca)}</span></span>`
+          : e ? `<span class="pchip">${esc(x.t)}</span>` : `<button class="pchip press" data-pick="${R.events.indexOf(x)}">${esc(x.t)} ↺</button>`;
+      }).join("");
+      return `<div class="binrow press ${e && !checked ? "target" : ""}" data-b="${b}" role="button" tabindex="${e && !checked ? 0 : -1}" aria-disabled="${!e || checked}" aria-label="Place in ${binLabel(b, s)}">
+        <span class="stripe" style="background:var(--${k})"></span><span class="lbl" style="color:var(--${k})">${binLabel(b, s)}</span>
+        <span class="drop">${e && !checked ? "Place here" : here.length ? here.length : ""}</span><span class="chips">${chips}</span></div>`;
+    }).join("")}</div>`;
+    dealt = false;
+    content.querySelectorAll(".binrow").forEach(row => row.addEventListener("keydown", ev => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); row.click(); } }));
+    content.querySelectorAll(".binrow").forEach(row => (row.onclick = ev => {
+      if (ev.target.closest("[data-pick]") || cur === null || checked) return;
+      buzz(); place.set(R.events[cur].id, +row.dataset.b);
+      const n = nextUnplaced(); cur = n >= 0 ? n : null; dealt = true; render();
+      content.scrollTo({ top: 0, behavior: "smooth" });
     }));
-    $("#check").onclick = () => {
-      checked = true; render(); setDock(null);
-      const res = R.events.map(e => place.get(e.id) === binOf(e.y, s)), score = res.filter(Boolean).length;
-      const sorted = R.events.slice().sort((a, b) => a.y - b.y);
-      setTimeout(() => finish("decade", score, sorted.map(e => `<li><span class="yr">${fmtYear(e.y, e.ca)}</span><span>${place.get(e.id) === binOf(e.y, s) ? "✓" : "✗"} ${esc(e.t)}</span></li>`).join(""), res.map(x => (x ? "🟩" : "🟥")).join("")), 900);
-    };
+    content.querySelectorAll("[data-pick]").forEach(c => (c.onclick = ev => {
+      ev.stopPropagation(); buzz(); const i = +c.dataset.pick;
+      place.delete(R.events[i].id); cur = i; dealt = true; render();
+      content.scrollTo({ top: 0, behavior: "smooth" });
+    }));
+    if (checked) { setDock(`<button class="btn press" id="res">See results</button>`); $("#res").onclick = showResults; return; }
+    setDock(`<button class="btn press" id="check" ${place.size < 10 ? "disabled" : ""}>${place.size < 10 ? `${10 - place.size} card${10 - place.size > 1 ? "s" : ""} left` : "Check answers"}</button>`);
+    $("#check").onclick = () => { checked = true; buzz(15); render(); setTimeout(showResults, 1400); };
   }
+  let shown = false;
+  function showResults() {
+    if (shown) { return finishSheetAgain(); } shown = true;
+    const res = R.events.map(e => place.get(e.id) === binOf(e.y, s)), score = res.filter(Boolean).length;
+    const sorted = R.events.slice().sort((a, b) => a.y - b.y);
+    finish("decade", score, sorted.map(e => `<li><span class="yr">${fmtYear(e.y, e.ca)}</span><span>${place.get(e.id) === binOf(e.y, s) ? "✓" : "✗"} ${esc(e.t)}</span><p>${esc(e.f)}</p></li>`).join(""), res.map(x => (x ? "🟩" : "🟥")).join(""));
+  }
+  function finishSheetAgain() { const sh = $("#sheet"); sh.hidden = $("#scrim").hidden = false; requestAnimationFrame(() => { sh.classList.add("on"); $("#scrim").classList.add("on"); }); sheetClose = () => (location.hash = ""); }
   render();
 }
 
